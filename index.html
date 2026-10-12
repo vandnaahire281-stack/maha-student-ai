@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maha Student AI - FY BCS</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:linear-gradient(135deg,#3157d5,#673ab7);color:white;text-align:center;padding:25px 15px}
+header h1{margin:0 0 7px;font-size:27px}header p{margin:0;font-size:14px}
+.container{max-width:760px;margin:auto;padding:15px}.card{background:white;border-radius:17px;padding:18px;margin:13px 0;box-shadow:0 3px 12px rgba(0,0,0,.08)}
+.module{display:block;width:100%;text-align:left;margin:9px 0;padding:15px;background:#fff;color:#172033;border:1px solid #dce3ef;border-radius:13px;font-size:16px}
+.module b{display:block;margin-bottom:4px}.module span{font-size:13px;color:#667085}
+button{border:0;border-radius:12px;padding:12px 15px;margin:5px 3px;font-size:15px;background:#3157d5;color:white}
+.secondary{background:#e9edff;color:#3157d5}.hidden{display:none}
+h2{color:#3157d5;font-size:21px}.note{line-height:1.6;background:#f8fafc;padding:13px;border-radius:10px}
+.important{border-left:5px solid #f59e0b;padding:10px;background:#fff8e7;margin:8px 0;border-radius:7px}
+pre{background:#172033;color:white;padding:13px;border-radius:10px;overflow:auto;font-size:13px}
+.quizopt{display:block;width:100%;text-align:left;background:#f1f4f9;color:#172033;margin:8px 0}
+.score{text-align:center;font-size:22px;font-weight:bold;padding:15px}
+.small{font-size:13px;color:#667085}ul{line-height:1.7}
+</style>
+</head>
+<body>
+
+<header>
+<h1>📚 Maha Student AI</h1>
+<p>FY BCS • Maharashtra Students' Study Companion</p>
+</header>
+
+<div class="container">
+
+<section id="home" class="card">
+<h2>🏠 Welcome!</h2>
+<p>एकाच app मध्ये तुमच्या FY BCS study modules चा अभ्यास करा.</p>
+
+<button class="module" onclick="openModule('c')">
+<b>💻 C Programming</b><span>Chapters • Programs • Important Questions • MCQ Quiz</span>
+</button>
+
+<button class="module" onclick="openModule('dbms')">
+<b>🗄️ DBMS</b><span>Chapters • Easy Notes • Important Questions • MCQ Quiz</span>
+</button>
+
+<button class="module" onclick="openModule('sql')">
+<b>💾 SQL</b><span>Commands • Queries • Important Questions • MCQ Quiz</span>
+</button>
+
+<button class="module" onclick="coming('English')">📖 English <span>• Coming next</span></button>
+<button class="module" onclick="coming('EVS')">🌱 EVS <span>• Coming next</span></button>
+<button class="module" onclick="coming('IKS')">🇮🇳 IKS <span>• Coming next</span></button>
+</section>
+
+<section id="c" class="card hidden">
+<h2>💻 C Programming</h2>
+<div class="note">
+<b>Important Chapters:</b>
+<ul>
+<li>Introduction to C</li><li>Variables & Data Types</li><li>Operators</li>
+<li>if / switch</li><li>Loops</li><li>Arrays</li><li>Functions</li>
+</ul>
+<b>Important:</b> Practice programs + MCQs for exam preparation.
+</div>
+<button onclick="showCQuestions()">⭐ Important Questions</button>
+<button onclick="showCQuiz()">🧠 MCQ Quiz</button>
+<div id="ccontent"></div>
+<button class="secondary" onclick="goHome()">⬅ Home</button>
+</section>
+
+<section id="dbms" class="card hidden">
+<h2>🗄️ DBMS</h2>
+<div class="note">
+<b>Important Chapters:</b>
+<ul>
+<li>Introduction to DBMS</li><li>Functions of DBMS</li><li>Types of DBMS</li>
+<li>Database Models</li><li>Relational Model & Keys</li>
+<li>Advantages & Disadvantages</li><li>Normalization</li><li>Basic SQL</li>
+</ul>
+</div>
+<button onclick="showDBMSQuestions()">⭐ Important Questions</button>
+<button onclick="showDBMSQuiz()">🧠 MCQ Quiz</button>
+<div id="dbmscontent"></div>
+<button class="secondary" onclick="goHome()">⬅ Home</button>
+</section>
+
+<section id="sql" class="card hidden">
+<h2>💾 SQL</h2>
+<div class="note">
+<b>Important Chapters:</b>
+<ul>
+<li>Introduction to SQL</li><li>DDL Commands</li><li>DML Commands</li>
+<li>SELECT & WHERE</li><li>ORDER BY & DISTINCT</li>
+<li>LIKE, BETWEEN, AND, OR</li><li>Aggregate Functions</li><li>Nested Queries</li>
+</ul>
+</div>
+<button onclick="showSQLQueries()">💻 Important Queries</button>
+<button onclick="showSQLQuestions()">⭐ Important Questions</button>
+<button onclick="showSQLQuiz()">🧠 MCQ Quiz</button>
+<div id="sqlcontent"></div>
+<button class="secondary" onclick="goHome()">⬅ Home</button>
+</section>
+
+</div>
+
+<script>
+function hideAll(){
+document.querySelectorAll('section').forEach(x=>x.classList.add('hidden'));
+}
+function goHome(){hideAll();document.getElementById('home').classList.remove('hidden');window.scrollTo(0,0)}
+function openModule(id){hideAll();document.getElementById(id).classList.remove('hidden');window.scrollTo(0,0)}
+function coming(name){alert(name+' Module पुढच्या update मध्ये जोडला जाईल. 📚')}
+
+function showCQuestions(){
+document.getElementById('ccontent').innerHTML=`
+<h3>⭐ C Very Important Questions</h3>
+<div class="important">1. Explain data types in C.</div>
+<div class="important">2. Explain if-else and switch statements.</div>
+<div class="important">3. Explain while, do-while and for loops.</div>
+<div class="important">4. Write a program to find largest number.</div>
+<div class="important">5. Write a program to find sum and average of array elements.</div>
+<div class="important">6. Explain functions in C.</div>`;
+}
+let cq=[
+['Which symbol is used to end a C statement?',[';','.',':',','],0],
+['Which loop executes at least once?',['for','while','do-while','if'],2],
+['Which header is commonly used for printf()?',['math.h','stdio.h','string.h','stdlib.h'],1],
+['Array index normally starts from:',['1','0','-1','2'],1],
+['Which keyword returns a value from a function?',['break','continue','return','switch'],2]
+];
+function showCQuiz(){quiz(cq,'ccontent','C Programming')}
+function showDBMSQuestions(){
+document.getElementById('dbmscontent').innerHTML=`
+<h3>⭐ DBMS Very Important Questions</h3>
+<div class="important">1. Define DBMS and explain its advantages.</div>
+<div class="important">2. Explain functions of DBMS.</div>
+<div class="important">3. Explain types of DBMS.</div>
+<div class="important">4. Explain relational model and keys.</div>
+<div class="important">5. Explain normalization, 1NF, 2NF and 3NF.</div>
+<div class="important">6. Differentiate DBMS and traditional file system.</div>`;
+}
+let dq=[
+['DBMS stands for:',['Database Management System','Data Backup Management System','Database Machine System','Data Model System'],0],
+['Which DBMS stores data in tables?',['Hierarchical','Relational','Network','Object'],1],
+['Which key uniquely identifies a record?',['Foreign key','Primary key','Duplicate key','Normal key'],1],
+['Which is a DBMS advantage?',['Data security','More redundancy','No backup','No sharing'],0],
+['Normalization mainly reduces:',['Security','Data redundancy','Tables','Users'],1]
+];
+function showDBMSQuiz(){quiz(dq,'dbmscontent','DBMS')}
+
+function showSQLQueries(){
+document.getElementById('sqlcontent').innerHTML=`
+<h3>💻 Important SQL Queries</h3>
+<p><b>Create table</b></p><pre>CREATE TABLE STUDENT(
+RollNo INT,
+Name VARCHAR(30),
+Dept_ID VARCHAR(10),
+Marks INT
+);</pre>
+<p><b>Insert</b></p><pre>INSERT INTO STUDENT
+VALUES (1,'Janhavi','D1',85);</pre>
+<p><b>Display</b></p><pre>SELECT * FROM STUDENT;</pre>
+<p><b>WHERE</b></p><pre>SELECT * FROM STUDENT
+WHERE Dept_ID = 'D1';</pre>
+<p><b>Order</b></p><pre>SELECT * FROM STUDENT
+ORDER BY Marks DESC;</pre>
+<p><b>Average</b></p><pre>SELECT AVG(Marks)
+FROM STUDENT;</pre>`;
+}
+function showSQLQuestions(){
+document.getElementById('sqlcontent').innerHTML=`
+<h3>⭐ SQL Very Important Questions</h3>
+<div class="important">1. Define SQL. Explain its uses.</div>
+<div class="important">2. Explain DDL commands: CREATE, ALTER, DROP, TRUNCATE.</div>
+<div class="important">3. Explain DML commands: INSERT, UPDATE, DELETE.</div>
+<div class="important">4. Explain SELECT and WHERE with examples.</div>
+<div class="important">5. Explain ORDER BY and DISTINCT.</div>
+<div class="important">6. Explain LIKE, BETWEEN, AND and OR.</div>
+<div class="important">7. Explain COUNT, SUM, AVG, MAX and MIN.</div>
+<div class="important">8. Explain nested queries/subqueries.</div>`;
+}
+let sq=[
+['SQL stands for:',['Structured Query Language','Simple Query Language','System Query Language','Structured Question Language'],0],
+['Which is a DDL command?',['INSERT','UPDATE','CREATE','SELECT'],2],
+['Which command adds records?',['INSERT','ALTER','DROP','CREATE'],0],
+['Which clause filters records?',['ORDER BY','WHERE','DISTINCT','GROUP'],1],
+['Which function calculates average?',['SUM()','COUNT()','AVG()','MAX()'],2],
+['Which operator checks a range?',['LIKE','BETWEEN','OR','NOT'],1]
+];
+function showSQLQuiz(){quiz(sq,'sqlcontent','SQL')}
+
+function quiz(data,target,title){
+let i=0,score=0,answered=false;
+const box=document.getElementById(target);
+function render(){
+answered=false;
+let q=data[i];
+let h='<h3>🧠 '+title+' Quiz</h3><p><b>Question '+(i+1)+' of '+data.length+': '+q[0]+'</b></p>';
+q[1].forEach((o,n)=>h+='<button class="quizopt" data-n="'+n+'">'+String.fromCharCode(65+n)+'. '+o+'</button>');
+h+='<button id="qnext">Next ➜</button><div id="qscore" class="score"></div>';
+box.innerHTML=h;
+box.querySelectorAll('.quizopt').forEach(b=>b.onclick=()=>{if(answered)return;answered=true;let n=Number(b.dataset.n);if(n===q[2]){score++;alert('✅ Correct!')}else alert('❌ Correct answer: '+q[1][q[2]]);});
+box.querySelector('#qnext').onclick=()=>{
+if(!answered){alert('Please select an answer first.');return}
+if(i<data.length-1){i++;render()}else{box.innerHTML='<h3>🎉 '+title+' Quiz Completed!</h3><div class="score">Your Score: '+score+' / '+data.length+'</div>'}
+};
+}
+render();window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
